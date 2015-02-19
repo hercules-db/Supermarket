@@ -1,0 +1,10 @@
+{
+  "name": "Supermarket",
+  "version": "0.0.0",
+  "description": "Supermarket",
+  "main": "server.js",
+  "author": {
+    "name": "Ani",
+    "email": ""
+  }
+}
