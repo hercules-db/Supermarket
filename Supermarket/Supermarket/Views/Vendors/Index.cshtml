@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Supermarket.Models.Vendor>
+
+@{
+    ViewBag.Title = "Vendors";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VendorId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VendorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VendorId })
+        </td>
+    </tr>
+}
+
+</table>
