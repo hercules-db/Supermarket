@@ -1,0 +1,26 @@
+﻿@model Supermarket.Models.Measure
+
+@{
+    ViewBag.Title = "Measure Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Measure</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasureName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasureName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MeasureId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
