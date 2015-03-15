@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SupermarketOracleModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MEASURES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MEASURE_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENDOR_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="MEASURE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="number" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENDORS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENDOR_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PRODUCTS_MEASURES">
+          <End Role="MEASURES" Type="Self.MEASURES" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEASURES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="MEASURE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTS_VENDORS">
+          <End Role="VENDORS" Type="Self.VENDORS" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDORS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="VENDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SupermarketOracleModelStoreContainer">
+          <EntitySet Name="MEASURES" EntityType="Self.MEASURES" Schema="HERCULES" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="HERCULES" store:Type="Tables" />
+          <EntitySet Name="VENDORS" EntityType="Self.VENDORS" Schema="HERCULES" store:Type="Tables" />
+          <AssociationSet Name="FK_PRODUCTS_MEASURES" Association="Self.FK_PRODUCTS_MEASURES">
+            <End Role="MEASURES" EntitySet="MEASURES" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTS_VENDORS" Association="Self.FK_PRODUCTS_VENDORS">
+            <End Role="VENDORS" EntitySet="VENDORS" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SupermarketOracleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MEASURE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MEASURE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCTS_MEASURES" FromRole="MEASURES" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENDOR_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MEASURE_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="MEASURE" Relationship="Self.FK_PRODUCTS_MEASURES" FromRole="PRODUCTS" ToRole="MEASURES" />
+          <NavigationProperty Name="VENDOR" Relationship="Self.FK_PRODUCTS_VENDORS" FromRole="PRODUCTS" ToRole="VENDORS" />
+        </EntityType>
+        <EntityType Name="VENDOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENDOR_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCTS_VENDORS" FromRole="VENDORS" ToRole="PRODUCTS" />
+        </EntityType>
+        <Association Name="FK_PRODUCTS_MEASURES">
+          <End Role="MEASURES" Type="Self.MEASURE" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEASURES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="MEASURE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTS_VENDORS">
+          <End Role="VENDORS" Type="Self.VENDOR" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDORS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="VENDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SupermarketOracleContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MEASURES" EntityType="Self.MEASURE" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCT" />
+          <EntitySet Name="VENDORS" EntityType="Self.VENDOR" />
+          <AssociationSet Name="FK_PRODUCTS_MEASURES" Association="Self.FK_PRODUCTS_MEASURES">
+            <End Role="MEASURES" EntitySet="MEASURES" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTS_VENDORS" Association="Self.FK_PRODUCTS_VENDORS">
+            <End Role="VENDORS" EntitySet="VENDORS" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SupermarketOracleModelStoreContainer" CdmEntityContainer="SupermarketOracleContext">
+          <EntitySetMapping Name="MEASURES">
+            <EntityTypeMapping TypeName="SupermarketOracleModel.MEASURE">
+              <MappingFragment StoreEntitySet="MEASURES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MEASURE_NAME" ColumnName="MEASURE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS">
+            <EntityTypeMapping TypeName="SupermarketOracleModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="MEASURE_ID" ColumnName="MEASURE_ID" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENDORS">
+            <EntityTypeMapping TypeName="SupermarketOracleModel.VENDOR">
+              <MappingFragment StoreEntitySet="VENDORS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VENDOR_NAME" ColumnName="VENDOR_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
