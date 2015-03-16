@@ -30,58 +30,52 @@ namespace Supermarket.Data.Migrations
 
         private static void SyncMeasures(SupermarketSqlContext context)
         {
-            if (context.Measures.Any())
-            {
-                return;
-            }
-
             var measures = new SupermarketOracleContext().MEASURES.ToList();
 
             foreach (var measure in measures)
             {
-                context.Measures.Add(new Measure()
+                if (!context.Measures.Any(x => x.MeasureName == measure.MEASURE_NAME))
                 {
-                    MeasureName = measure.MEASURE_NAME
-                });
+                    context.Measures.Add(new Measure()
+                    {
+                        MeasureName = measure.MEASURE_NAME
+                    });
+                }
             }
         }
 
         private static void SyncVendors(SupermarketSqlContext context)
         {
-            if (context.Vendors.Any())
-            {
-                return;
-            }
-
             var vendors = new SupermarketOracleContext().VENDORS.ToList();
 
             foreach (var vendor in vendors)
             {
-                context.Vendors.Add(new Vendor()
+                if (!context.Vendors.Any(x => x.VendorName == vendor.VENDOR_NAME))
                 {
-                    VendorName = vendor.VENDOR_NAME
-                });
+                    context.Vendors.Add(new Vendor()
+                    {
+                        VendorName = vendor.VENDOR_NAME
+                    });
+                }
             }
         }
 
         private static void SyncProducts(SupermarketSqlContext context)
         {
-            if (context.Products.Any())
-            {
-                return;
-            }
-
             var products = new SupermarketOracleContext().PRODUCTS.ToList();
 
             foreach (var product in products)
             {
-                context.Products.Add(new Product()
+                if (!context.Products.Any(x => x.ProductName == product.PRODUCT_NAME || x.ProductPrice == product.PRICE))
                 {
-                    ProductName = product.PRODUCT_NAME,
-                    MeasureId = (int)product.MEASURE_ID,
-                    VendorId = (int)product.VENDOR_ID,
-                    ProductPrice = product.PRICE
-                });
+                    context.Products.Add(new Product()
+                    {
+                        ProductName = product.PRODUCT_NAME,
+                        MeasureId = (int)product.MEASURE_ID,
+                        VendorId = (int)product.VENDOR_ID,
+                        ProductPrice = product.PRICE
+                    });
+                }
             }
         }
     }

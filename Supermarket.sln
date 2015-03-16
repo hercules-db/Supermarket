@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.ConsoleClient",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.WebClient", "Supermarket.WebClient\Supermarket.WebClient.csproj", "{92A1A576-1D98-4D28-983F-E2FE12B8EAB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.WebAPI", "Supermarket.WebAPI\Supermarket.WebAPI.csproj", "{9CE8C450-4D56-44AD-A6BC-0D960D6701BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{92A1A576-1D98-4D28-983F-E2FE12B8EAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A1A576-1D98-4D28-983F-E2FE12B8EAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A1A576-1D98-4D28-983F-E2FE12B8EAB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE8C450-4D56-44AD-A6BC-0D960D6701BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE8C450-4D56-44AD-A6BC-0D960D6701BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE8C450-4D56-44AD-A6BC-0D960D6701BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE8C450-4D56-44AD-A6BC-0D960D6701BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
