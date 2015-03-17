@@ -23,7 +23,7 @@
 
         public T Get(object id)
         {
-            return DbSet.Find(id);
+            return this.DbSet.Find(id);
         }
 
         public void Add(T entity)
@@ -43,7 +43,7 @@
 
         public void Delete(object id)
         {
-            this.Delete(Get(id));
+            this.Delete(this.Get(id));
         }
 
         public int SaveChanges()

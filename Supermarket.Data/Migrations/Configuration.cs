@@ -14,71 +14,6 @@ namespace Supermarket.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        #region Sync
-        public static void Sync(SupermarketSqlContext context)
-        {
-            SyncMeasures(context);
-            context.SaveChanges();
-
-            SyncVendors(context);
-            context.SaveChanges();
-
-            SyncProducts(context);
-            context.SaveChanges();
-        }
-
-        private static void SyncMeasures(SupermarketContext context)
-        {
-            var measures = new SupermarketOracleContext().Measures.ToList();
-
-            foreach (var measure in measures)
-            {
-                if (!context.Measures.Any(x => x.MeasureName == measure.MeasureName))
-                {
-                    context.Measures.Add(new Measure()
-                    {
-                        MeasureName = measure.MeasureName
-                    });
-                }
-            }
-        }
-
-        private static void SyncVendors(SupermarketContext context)
-        {
-            var vendors = new SupermarketOracleContext().Vendors.ToList();
-
-            foreach (var vendor in vendors)
-            {
-                if (!context.Vendors.Any(x => x.VendorName == vendor.VendorName))
-                {
-                    context.Vendors.Add(new Vendor()
-                    {
-                        VendorName = vendor.VendorName
-                    });
-                }
-            }
-        }
-
-        private static void SyncProducts(SupermarketContext context)
-        {
-            var products = new SupermarketOracleContext().Products.ToList();
-
-            foreach (var product in products)
-            {
-                if (!context.Products.Any(x => x.ProductName == product.ProductName))
-                {
-                    context.Products.Add(new Product()
-                    {
-                        ProductName = product.ProductName,
-                        MeasureId = product.MeasureId,
-                        VendorId = product.VendorId,
-                        ProductPrice = product.ProductPrice
-                    });
-                }
-            }
-        }
-        #endregion
-
         #region Seed
         protected override void Seed(SupermarketSqlContext context)
         {
@@ -183,6 +118,71 @@ namespace Supermarket.Data.Migrations
                 if (!context.Products.Any(x => x.ProductName == product.ProductName))
                 {
                     context.Products.Add(product);
+                }
+            }
+        }
+        #endregion
+
+        #region Sync
+        public static void Sync(SupermarketSqlContext context)
+        {
+            SyncMeasures(context);
+            context.SaveChanges();
+
+            SyncVendors(context);
+            context.SaveChanges();
+
+            SyncProducts(context);
+            context.SaveChanges();
+        }
+
+        private static void SyncMeasures(SupermarketContext context)
+        {
+            var measures = new SupermarketOracleContext().Measures.ToList();
+
+            foreach (var measure in measures)
+            {
+                if (!context.Measures.Any(x => x.MeasureName == measure.MeasureName))
+                {
+                    context.Measures.Add(new Measure()
+                    {
+                        MeasureName = measure.MeasureName
+                    });
+                }
+            }
+        }
+
+        private static void SyncVendors(SupermarketContext context)
+        {
+            var vendors = new SupermarketOracleContext().Vendors.ToList();
+
+            foreach (var vendor in vendors)
+            {
+                if (!context.Vendors.Any(x => x.VendorName == vendor.VendorName))
+                {
+                    context.Vendors.Add(new Vendor()
+                    {
+                        VendorName = vendor.VendorName
+                    });
+                }
+            }
+        }
+
+        private static void SyncProducts(SupermarketContext context)
+        {
+            var products = new SupermarketOracleContext().Products.ToList();
+
+            foreach (var product in products)
+            {
+                if (!context.Products.Any(x => x.ProductName == product.ProductName))
+                {
+                    context.Products.Add(new Product()
+                    {
+                        ProductName = product.ProductName,
+                        MeasureId = product.MeasureId,
+                        VendorId = product.VendorId,
+                        ProductPrice = product.ProductPrice
+                    });
                 }
             }
         }

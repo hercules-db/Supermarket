@@ -17,15 +17,14 @@
         {
         }
 
+        public DbSet<Supermarket> Supermarkets { get; set; }
+
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Measure> Measures { get; set; }
 
         public DbSet<Vendor> Vendors { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        public DbSet<Sale> Sales { get; set; }
     }
 }

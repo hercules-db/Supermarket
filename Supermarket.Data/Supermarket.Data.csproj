@@ -60,13 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201503162005412_Initial.cs" />
-    <Compile Include="Migrations\201503162005412_Initial.Designer.cs">
-      <DependentUpon>201503162005412_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201503171820471_Oracle.cs" />
+    <Compile Include="Migrations\201503171820471_Oracle.Designer.cs">
+      <DependentUpon>201503171820471_Oracle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503170007029_SQL.cs" />
-    <Compile Include="Migrations\201503170007029_SQL.Designer.cs">
-      <DependentUpon>201503170007029_SQL.cs</DependentUpon>
+    <Compile Include="Migrations\201503171823432_Sql.cs" />
+    <Compile Include="Migrations\201503171823432_Sql.Designer.cs">
+      <DependentUpon>201503171823432_Sql.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,11 +87,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503162005412_Initial.resx">
-      <DependentUpon>201503162005412_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503171820471_Oracle.resx">
+      <DependentUpon>201503171820471_Oracle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503170007029_SQL.resx">
-      <DependentUpon>201503170007029_SQL.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503171823432_Sql.resx">
+      <DependentUpon>201503171823432_Sql.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
