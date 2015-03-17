@@ -1,6 +1,7 @@
 ﻿namespace Supermarket.Data
 {
     using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Data.SqlClient;
 
     using Models;
@@ -16,6 +17,8 @@
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("dbo");
+
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Entity<Measure>().Property(p => p.MeasureId).HasColumnName("MeasureId");
             modelBuilder.Entity<Measure>().Property(p => p.MeasureName).HasColumnName("MeasureName");
