@@ -6,7 +6,7 @@ This teamwork project assignment is designed to develop skills for working with 
 
 A chain of supermarkets has multiple decentralized information systems to hold its data (products, vendors, prices, sales, etc.) and works with different data sources. Data sometimes comes as Excel files or as XML documents or is accessed from a database. The management wants the IT department to produce daily reports in different formats so we need to **develop a set of tools** that do the data importing, processing, exporting and reports generation, following the steps from the figure below:  
 
-![Technologies](https://raw.githubusercontent.com/hercules-db/Supermarket/master/assets/images/technologies-summary.png)
+![Technologies](https://raw.githubusercontent.com/hercules-db/Supermarket/master/Tasks/technologies-summary.png)
 
 ## Problem #1 – Design and Populate the Oracle Database
 The chain of supermarkets holds information about its products in Oracle database consisting of at least three tables: products, vendors and measures.
