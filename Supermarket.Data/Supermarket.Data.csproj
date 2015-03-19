@@ -66,11 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ISupermarketContext.cs" />
-    <Compile Include="Exports\ExcelExport.cs" />
+    <Compile Include="Exports\Excel.cs" />
     <Compile Include="Exports\Json.cs" />
-    <Compile Include="Exports\MySqlExport.cs" />
+    <Compile Include="Exports\MySq.cs" />
     <Compile Include="Exports\Pdf.cs" />
-    <Compile Include="Exports\XmlExport.cs" />
+    <Compile Include="Exports\Xml.cs" />
     <Compile Include="Imports\Excel.cs" />
     <Compile Include="Imports\Mongo.cs" />
     <Compile Include="Imports\Xml.cs" />
