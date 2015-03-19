@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Models", "Super
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Data", "Supermarket.Data\Supermarket.Data.csproj", "{C6AC52CF-AAEB-4004-BC8B-85616F8C8ACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.ConsoleClient", "Supermarket.ConsoleClient\Supermarket.ConsoleClient.csproj", "{D12E9BCF-1479-4D68-8DC8-A530938C2DA6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Program", "Supermarket.Program\Supermarket.Program.csproj", "{DDDF5542-2B9C-40BB-9F68-0E7D1C1FD5F8}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{C6AC52CF-AAEB-4004-BC8B-85616F8C8ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6AC52CF-AAEB-4004-BC8B-85616F8C8ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6AC52CF-AAEB-4004-BC8B-85616F8C8ACC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D12E9BCF-1479-4D68-8DC8-A530938C2DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D12E9BCF-1479-4D68-8DC8-A530938C2DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D12E9BCF-1479-4D68-8DC8-A530938C2DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D12E9BCF-1479-4D68-8DC8-A530938C2DA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDDF5542-2B9C-40BB-9F68-0E7D1C1FD5F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDDF5542-2B9C-40BB-9F68-0E7D1C1FD5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDDF5542-2B9C-40BB-9F68-0E7D1C1FD5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU

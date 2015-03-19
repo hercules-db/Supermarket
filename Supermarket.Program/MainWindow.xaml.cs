@@ -1,35 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Supermarket.Data;
-using Supermarket.Data.Migrations;
-
-namespace Supermarket.Program
+﻿namespace Supermarket.Program
 {
+    using System.Windows;
+
+    using Data.Context;
+    using Data.Migrations;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string ExitConfirm = "Do you want to close this window?";
+        private const string ConfirmExit = "Do you want to close this window?";
         private const string SyncSuccess = "Syncing successful!";
         private const string SyncError = "Syncing failed! Please try again.";
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void Import_Click(object sender, RoutedEventArgs e)
@@ -64,7 +51,7 @@ namespace Supermarket.Program
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show(ExitConfirm, MessageStatus.Confirmation.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show(ConfirmExit, MessageStatus.Confirmation.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {

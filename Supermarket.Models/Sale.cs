@@ -1,8 +1,6 @@
 ﻿namespace Supermarket.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Sale
     {
@@ -10,16 +8,18 @@
         public int SaleId { get; set; }
 
         [Required]
-        public DateTime SoldTime { get; set; }
-
-        [Required]
-        public long Quantity { get; set; }
+        public int SupermarketId { get; set; }
 
         [Required]
         public int ProductId { get; set; }
 
         [Required]
-        public int SupermarketId { get; set; }
+        public long Quantity { get; set; }
+
+        [Required]
+        public decimal UnitPrice { get; set; }
+
+        public decimal SaleSum { get; set; }
 
         public virtual Product Product { get; set; }
 

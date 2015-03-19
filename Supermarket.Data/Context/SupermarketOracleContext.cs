@@ -1,4 +1,4 @@
-﻿namespace Supermarket.Data
+﻿namespace Supermarket.Data.Context
 {
     using System.Data.Entity;
 
@@ -9,7 +9,7 @@
 
     public class SupermarketOracleContext : SupermarketContext
     {
-        private const string ConnectionString =
+        public const string ConnectionString =
             "Data Source=62.176.105.57:1521/XE;Persist Security Info=True;User ID=HERCULES;Password=pass123;";
 
         public SupermarketOracleContext()
@@ -43,10 +43,11 @@
             modelBuilder.Entity<Measure>().Property(p => p.MeasureName).HasColumnName("MEASURE_NAME");
 
             modelBuilder.Entity<Sale>().Property(p => p.SaleId).HasColumnName("SALE_ID");
-            modelBuilder.Entity<Sale>().Property(p => p.SoldTime).HasColumnName("SOLD_TIME");
             modelBuilder.Entity<Sale>().Property(p => p.SupermarketId).HasColumnName("SUPERMARKET_ID");
             modelBuilder.Entity<Sale>().Property(p => p.ProductId).HasColumnName("PRODUCT_ID");
+            modelBuilder.Entity<Sale>().Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE");
             modelBuilder.Entity<Sale>().Property(p => p.Quantity).HasColumnName("QUANTITY");
+            modelBuilder.Entity<Sale>().Property(p => p.SaleSum).HasColumnName("SALE_SUM");
         }
 
         public class ModelConfiguration : DbConfiguration

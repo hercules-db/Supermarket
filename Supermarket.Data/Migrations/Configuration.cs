@@ -4,6 +4,7 @@ namespace Supermarket.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+    using Context;
     using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<SupermarketSqlContext>
@@ -23,9 +24,12 @@ namespace Supermarket.Data.Migrations
             context.SaveChanges();
 
             SeedProducts(context);
+            SeedSupermarkets(context);
+
+            context.SaveChanges();
         }
 
-        private static void SeedMeasures(SupermarketContext context)
+        private static void SeedMeasures(ISupermarketContext context)
         {
             var measures = new List<Measure>()
             {
@@ -52,7 +56,7 @@ namespace Supermarket.Data.Migrations
             }
         }
 
-        private static void SeedVendors(SupermarketContext context)
+        private static void SeedVendors(ISupermarketContext context)
         {
             var vendors = new List<Vendor>()
             {
@@ -79,7 +83,7 @@ namespace Supermarket.Data.Migrations
             }
         }
 
-        private static void SeedProducts(SupermarketContext context)
+        private static void SeedProducts(ISupermarketContext context)
         {
             var products = new List<Product>()
             {
@@ -118,6 +122,41 @@ namespace Supermarket.Data.Migrations
                 if (!context.Products.Any(x => x.ProductName == product.ProductName))
                 {
                     context.Products.Add(product);
+                }
+            }
+        }
+
+        private static void SeedSupermarkets(ISupermarketContext context)
+        {
+            var supermarkets = new List<Supermarket>()
+            {
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Kaspichan – Center”",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Bourgas – Plaza”",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Bay Ivan” – Zmeyovo",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Plovdiv – Stolipinovo”",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Bourgas – Plaza”",
+                }
+            };
+
+            foreach (var supermarket in supermarkets)
+            {
+                if (!context.Supermarkets.Any(x => x.SupermarketName == supermarket.SupermarketName))
+                {
+                    context.Supermarkets.Add(supermarket);
                 }
             }
         }

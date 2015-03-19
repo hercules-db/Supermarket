@@ -1,47 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace Supermarket.Program
+﻿namespace Supermarket.Program
 {
+    using System.Windows;
+
+    using Microsoft.Win32;
+
+    using Data.Context;
+    using Data.Imports;
+
     /// <summary>
     /// Interaction logic for Import.xaml
     /// </summary>
     public partial class Import : Window
     {
+        private const string FileType = ".zip";
+        private const string FileFilter = "Archives (.zip)|*.zip";
+        private const string ConfirmImport = "Begin import?";
+        private const string InsertError = "Inserting Failed!";
+        private const string InsertSuccess = "Inserting Successful";
+
         public Import()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
         {
-            // Create OpenFileDialog
-            var dlg = new Microsoft.Win32.OpenFileDialog();
+            var dialog = new OpenFileDialog();
 
-            // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "Text documents (.txt)|*.txt";
+            dialog.DefaultExt = FileType;
+            dialog.Filter = FileFilter;
 
-            // Display OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Get the selected file name and display in a TextBox
-            if (result == true)
+            if (dialog.ShowDialog() == true)
             {
-                // Open document
-                string filename = dlg.FileName;
-                FileNameTextBox.Text = filename;
+                string fileName = dialog.FileName;
+                FileNameTextBox.Text = fileName;
+
+                var result = MessageBox.Show(ConfirmImport, MessageStatus.Confirmation.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        var excel = new Excel();
+                        ImportDates.Text = string.Join("\r\n", excel.Import(fileName, new SupermarketSqlContext())) + "\r\nDone!";
+                    }
+                    catch
+                    {
+                        MessageBox.Show(InsertError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+
+                    MessageBox.Show(InsertSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
             }
         }
 
