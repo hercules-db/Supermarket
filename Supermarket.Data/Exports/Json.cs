@@ -1,6 +1,7 @@
 ﻿namespace Supermarket.Data.Exports
 {
-    public class ExcelExport
+    public class Json
     {
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Supermarket.Data.Exports
 {
-    public class XmlExport
+    public class Excel
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Supermarket.Data.Exports
 {
-    public class JsonExport
+    public class MySq
     {
     }
 }
