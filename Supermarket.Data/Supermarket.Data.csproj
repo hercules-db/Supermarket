@@ -72,15 +72,15 @@
     <Compile Include="Exports\PdfExport.cs" />
     <Compile Include="Exports\XmlExport.cs" />
     <Compile Include="Imports\Excel.cs" />
-    <Compile Include="Imports\MongoImport.cs" />
-    <Compile Include="Imports\XmlImport.cs" />
-    <Compile Include="Migrations\201503171820471_Oracle.cs" />
-    <Compile Include="Migrations\201503171820471_Oracle.Designer.cs">
-      <DependentUpon>201503171820471_Oracle.cs</DependentUpon>
+    <Compile Include="Imports\Mongo.cs" />
+    <Compile Include="Imports\Xml.cs" />
+    <Compile Include="Migrations\201503191332282_Oracle.cs" />
+    <Compile Include="Migrations\201503191332282_Oracle.Designer.cs">
+      <DependentUpon>201503191332282_Oracle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503171823432_Sql.cs" />
-    <Compile Include="Migrations\201503171823432_Sql.Designer.cs">
-      <DependentUpon>201503171823432_Sql.cs</DependentUpon>
+    <Compile Include="Migrations\201503191334465_Sql.cs" />
+    <Compile Include="Migrations\201503191334465_Sql.Designer.cs">
+      <DependentUpon>201503191334465_Sql.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,11 +101,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503171820471_Oracle.resx">
-      <DependentUpon>201503171820471_Oracle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503191332282_Oracle.resx">
+      <DependentUpon>201503191332282_Oracle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503171823432_Sql.resx">
-      <DependentUpon>201503171823432_Sql.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503191334465_Sql.resx">
+      <DependentUpon>201503191334465_Sql.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

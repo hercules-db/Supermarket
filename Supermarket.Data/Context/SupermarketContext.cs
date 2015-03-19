@@ -27,7 +27,6 @@
 
         public IDbSet<Sale> Sales { get; set; }
 
-
         public new void SaveChanges()
         {
             base.SaveChanges();

@@ -18,13 +18,45 @@ namespace Supermarket.Data.Migrations
         #region Seed
         protected override void Seed(SupermarketSqlContext context)
         {
+            SeedSupermarkets(context);
             SeedMeasures(context);
             SeedVendors(context);
-
-            context.SaveChanges();
-
             SeedProducts(context);
-            SeedSupermarkets(context);
+        }
+
+        private static void SeedSupermarkets(ISupermarketContext context)
+        {
+            var supermarkets = new List<Supermarket>()
+            {
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Kaspichan – Center”",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Bourgas – Plaza”",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Bay Ivan” – Zmeyovo",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Plovdiv – Stolipinovo”",
+                },
+                new Supermarket()
+                {
+                    SupermarketName = "Supermarket “Bourgas – Plaza”",
+                }
+            };
+
+            foreach (var supermarket in supermarkets)
+            {
+                if (!context.Supermarkets.Any(x => x.SupermarketName == supermarket.SupermarketName))
+                {
+                    context.Supermarkets.Add(supermarket);
+                }
+            }
 
             context.SaveChanges();
         }
@@ -54,6 +86,8 @@ namespace Supermarket.Data.Migrations
                     context.Measures.Add(measure);
                 }
             }
+
+            context.SaveChanges();
         }
 
         private static void SeedVendors(ISupermarketContext context)
@@ -81,6 +115,8 @@ namespace Supermarket.Data.Migrations
                     context.Vendors.Add(vendor);
                 }
             }
+
+            context.SaveChanges();
         }
 
         private static void SeedProducts(ISupermarketContext context)
@@ -124,58 +160,40 @@ namespace Supermarket.Data.Migrations
                     context.Products.Add(product);
                 }
             }
+
+            context.SaveChanges();
+        }
+        #endregion
+
+        #region Sync
+        public static void Sync(ISupermarketContext context)
+        {
+            SyncSupermarkets(context);
+            SyncMeasures(context);
+            SyncVendors(context);
+            SyncProducts(context);
+            SyncSales(context);
         }
 
-        private static void SeedSupermarkets(ISupermarketContext context)
+        private static void SyncSupermarkets(ISupermarketContext context)
         {
-            var supermarkets = new List<Supermarket>()
-            {
-                new Supermarket()
-                {
-                    SupermarketName = "Supermarket “Kaspichan – Center”",
-                },
-                new Supermarket()
-                {
-                    SupermarketName = "Supermarket “Bourgas – Plaza”",
-                },
-                new Supermarket()
-                {
-                    SupermarketName = "Supermarket “Bay Ivan” – Zmeyovo",
-                },
-                new Supermarket()
-                {
-                    SupermarketName = "Supermarket “Plovdiv – Stolipinovo”",
-                },
-                new Supermarket()
-                {
-                    SupermarketName = "Supermarket “Bourgas – Plaza”",
-                }
-            };
+            var supermarkets = new SupermarketOracleContext().Supermarkets.ToList();
 
             foreach (var supermarket in supermarkets)
             {
                 if (!context.Supermarkets.Any(x => x.SupermarketName == supermarket.SupermarketName))
                 {
-                    context.Supermarkets.Add(supermarket);
+                    context.Supermarkets.Add(new Supermarket()
+                    {
+                        SupermarketName = supermarket.SupermarketName
+                    });
                 }
             }
-        }
-        #endregion
 
-        #region Sync
-        public static void Sync(SupermarketSqlContext context)
-        {
-            SyncMeasures(context);
-            context.SaveChanges();
-
-            SyncVendors(context);
-            context.SaveChanges();
-
-            SyncProducts(context);
             context.SaveChanges();
         }
 
-        private static void SyncMeasures(SupermarketContext context)
+        private static void SyncMeasures(ISupermarketContext context)
         {
             var measures = new SupermarketOracleContext().Measures.ToList();
 
@@ -189,9 +207,11 @@ namespace Supermarket.Data.Migrations
                     });
                 }
             }
+
+            context.SaveChanges();
         }
 
-        private static void SyncVendors(SupermarketContext context)
+        private static void SyncVendors(ISupermarketContext context)
         {
             var vendors = new SupermarketOracleContext().Vendors.ToList();
 
@@ -205,9 +225,11 @@ namespace Supermarket.Data.Migrations
                     });
                 }
             }
+
+            context.SaveChanges();
         }
 
-        private static void SyncProducts(SupermarketContext context)
+        private static void SyncProducts(ISupermarketContext context)
         {
             var products = new SupermarketOracleContext().Products.ToList();
 
@@ -224,6 +246,30 @@ namespace Supermarket.Data.Migrations
                     });
                 }
             }
+
+            context.SaveChanges();
+        }
+
+        private static void SyncSales(ISupermarketContext context)
+        {
+            var sales = new SupermarketOracleContext().Sales.ToList();
+
+            foreach (var sale in sales)
+            {
+                if (!context.Sales.Any(x => x.SupermarketId == sale.SupermarketId))
+                {
+                    context.Sales.Add(new Sale()
+                    {
+                        SupermarketId = sale.SupermarketId,
+                        ProductId = sale.ProductId,
+                        Quantity = sale.Quantity,
+                        UnitPrice = sale.UnitPrice,
+                        SaleSum = sale.SaleSum
+                    });
+                }
+            }
+
+            context.SaveChanges();
         }
         #endregion
     }

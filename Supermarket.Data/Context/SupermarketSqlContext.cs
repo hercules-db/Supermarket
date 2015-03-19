@@ -11,7 +11,7 @@
         public SupermarketSqlContext()
             : base(new SqlConnection(ConnectionString))
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SupermarketSqlContext>());
+            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SupermarketSqlContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

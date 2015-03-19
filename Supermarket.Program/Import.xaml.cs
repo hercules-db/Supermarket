@@ -42,6 +42,7 @@
                     try
                     {
                         var excel = new Excel();
+                        excel.Import(fileName, new SupermarketOracleContext());
                         ImportDates.Text = string.Join("\r\n", excel.Import(fileName, new SupermarketSqlContext())) + "\r\nDone!";
                     }
                     catch

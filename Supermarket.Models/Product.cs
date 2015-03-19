@@ -13,13 +13,13 @@
         public string ProductName { get; set; }
 
         [Required]
+        public decimal ProductPrice { get; set; }
+
+        [Required]
         public int MeasureId { get; set; }
 
         [Required]
         public int VendorId { get; set; }
-
-        [Required]
-        public decimal ProductPrice { get; set; }
 
         public virtual Measure Measure { get; set; }
 
