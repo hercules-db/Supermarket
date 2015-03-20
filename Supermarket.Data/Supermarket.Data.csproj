@@ -75,7 +75,7 @@
     <Compile Include="Context\ISupermarketContext.cs" />
     <Compile Include="Exports\Excel.cs" />
     <Compile Include="Exports\Json.cs" />
-    <Compile Include="Exports\MySq.cs" />
+    <Compile Include="Exports\MySql.cs" />
     <Compile Include="Exports\Pdf.cs" />
     <Compile Include="Exports\Xml.cs" />
     <Compile Include="Imports\Excel.cs" />
