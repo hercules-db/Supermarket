@@ -13,8 +13,9 @@
 
     public class Excel
     {
-        private const string FileName = "Excel.xls";
-        private const string Dir = @"\Imports\";
+        private static readonly string FolderLocation =
+            Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Imports\Excel\");
+        private const string FileName = "Temp.xls";
 
         public static IEnumerable<DateTime> Import(string path, ISupermarketContext context)
         {
@@ -33,13 +34,10 @@
                     }
                     else
                     {
-                        if (!Directory.Exists(Dir))
-                        {
-                            Directory.CreateDirectory(Dir);
-                        }
+                        Directory.CreateDirectory(FolderLocation);
 
-                        entry.ExtractToFile(Path.Combine(Dir, FileName), true);
-                        var sales = ProcessExcel(string.Format("{0}{1}", Dir, FileName), reportDate, context);
+                        entry.ExtractToFile(Path.Combine(FolderLocation, FileName), true);
+                        var sales = ProcessExcel(string.Concat(FolderLocation, FileName), reportDate, context);
 
                         foreach (var sale in sales)
                         {

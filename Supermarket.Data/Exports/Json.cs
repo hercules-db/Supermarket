@@ -1,6 +1,4 @@
-﻿using Supermarket.Models;
-
-namespace Supermarket.Data.Exports
+﻿namespace Supermarket.Data.Exports
 {
     using System;
     using System.IO;
@@ -11,8 +9,9 @@ namespace Supermarket.Data.Exports
 
     public class Json
     {
+        private static readonly string FolderPath =
+            Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\JSON\");
         private const string FileName = "{0}.json";
-        private static string reportsFolder = "../../../Reports/JSON/";
 
         public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
@@ -31,13 +30,13 @@ namespace Supermarket.Data.Exports
 
             var serialize = new JavaScriptSerializer();
 
-            Directory.CreateDirectory(reportsFolder);
+            Directory.CreateDirectory(FolderPath);
 
             for (int i = 0; i < sales.Count; i++)
             {
                 var jsonSale = serialize.Serialize(sales[i]);
                 var fileName = string.Format(FileName, string.Format("{0}. {1}", i + 1, sales[i].ProductId));
-                var writer = new StreamWriter(string.Concat(reportsFolder, fileName));
+                var writer = new StreamWriter(string.Concat(FolderPath, fileName));
 
                 using (writer)
                 {

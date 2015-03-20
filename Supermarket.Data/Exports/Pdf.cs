@@ -1,27 +1,35 @@
-﻿using System;
-using System.Linq;
-using Supermarket.Data.Context;
-
-namespace Supermarket.Data.Exports
+﻿namespace Supermarket.Data.Exports
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+
+    using Context;
+
+    using iTextSharp.text;
+    using iTextSharp.text.pdf;
+
     public class Pdf
     {
-        public static void Export(ISupermarketContext context, DateTime startDate, DateTime endDate)
+        private const string FilePath = @"..\..\..\Exports\PDF\Aggregated-Sales-Report.pdf";
+
+        private const string DocumentHeaderTitle = "Aggregated Sales Report";
+
+        public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
-            var sales = (from s in context.Sales
-                         join p in context.Products on s.ProductId equals p.ProductId
-                         join v in context.Vendors on p.VendorId equals v.VendorId
-                         where s.DateSold >= startDate && s.DateSold < endDate
-                         select new
-                         {
-                             s.ProductId,
-                             p.ProductName,
-                             v.VendorName,
-                             QuantitySold = s.Quantity,
-                             TotalIncomes = s.SaleSum
-                         }).ToList();
+            var document = new Document(PageSize.LETTER, 10, 10, 42, 35);
 
+            PdfWriter.GetInstance(document, new FileStream(FilePath, FileMode.Create));
 
+            document.Open();
+
+            var titleHeader = new PdfPTable(1);
+            var cellHeader = new PdfPCell(new Phrase(DocumentHeaderTitle)) {HorizontalAlignment = 1};
+
+            titleHeader.AddCell(cellHeader);
+            document.Add(titleHeader);
+
+            document.Close();
         }
     }
 }

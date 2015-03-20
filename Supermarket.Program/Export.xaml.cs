@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace Supermarket.Program
+﻿namespace Supermarket.Program
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -28,26 +27,20 @@ namespace Supermarket.Program
             var exportMenu = (ExportMenu.SelectedValue as ComboBoxItem).Content.ToString();
             var context = new SupermarketSqlContext();
 
-            switch (exportMenu)
-            {
-                case "Excel": break;
-                case "PDF": break;
-                case "XML": break;
-                case "JSON":
-                    JsonExport(context, StartDate.SelectedDate, EndDate.SelectedDate);
-                    break;
-                case "MySQL": break;
-            }
-        }
-
-        private void JsonExport(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
-        {
             try
             {
-                Json.Export(context, startDate, endDate);
+                switch (exportMenu)
+                {
+                    case "Excel": Excel.Export(context); break; // TODO
+                    case "PDF": Pdf.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break; // TODO
+                    case "XML": Xml.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
+                    case "JSON": Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
+                    case "MySQL": break; // TODO
+                }
+
                 MessageBox.Show(ExportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-            catch
+            catch (Exception)
             {
                 MessageBox.Show(ExportError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
