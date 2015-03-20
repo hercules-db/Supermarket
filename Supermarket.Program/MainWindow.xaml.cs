@@ -40,13 +40,12 @@
             try
             {
                 Configuration.Sync(new SupermarketSqlContext());
+                MessageBox.Show(SyncSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch
             {
                 MessageBox.Show(SyncError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
-            MessageBox.Show(SyncSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

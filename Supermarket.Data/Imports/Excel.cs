@@ -13,12 +13,11 @@
 
     public class Excel
     {
-        private const string FileName = "Import.xls";
-        private const string FolderName = "\\Temp\\";
+        private const string FileName = "Excel.xls";
+        private const string Dir = @"\Imports\";
 
-        public List<string> Import(string path, ISupermarketContext context)
+        public static List<string> Import(string path, ISupermarketContext context)
         {
-            string tempFolder = string.Format("{0}{1}", Directory.GetCurrentDirectory(), FolderName);
             var reportDates = new List<string>();
             var archive = ZipFile.OpenRead(path);
 
@@ -32,13 +31,13 @@
                     }
                     else
                     {
-                        if (!Directory.Exists(tempFolder))
+                        if (!Directory.Exists(Dir))
                         {
-                            Directory.CreateDirectory(tempFolder);
+                            Directory.CreateDirectory(Dir);
                         }
 
-                        entry.ExtractToFile(Path.Combine(tempFolder, FileName), true);
-                        var sales = this.ProcessExcel(string.Format("{0}{1}", tempFolder, FileName), context);
+                        entry.ExtractToFile(Path.Combine(Dir, FileName), true);
+                        var sales = ProcessExcel(string.Format("{0}{1}", Dir, FileName), context);
 
                         foreach (var sale in sales)
                         {
@@ -53,10 +52,10 @@
             return reportDates;
         }
 
-        private List<Sale> ProcessExcel(string path, ISupermarketContext context = null)
+        private static List<Sale> ProcessExcel(string file, ISupermarketContext context = null)
         {
             var excel = new Application();
-            var workBook = excel.Workbooks.Open(path, 0, true, 5, string.Empty, string.Empty, true, XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            var workBook = excel.Workbooks.Open(file, 0, true, 5, string.Empty, string.Empty, true, XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
             var workSheet = (Worksheet)workBook.Worksheets.get_Item("Sales");
 
             workSheet.Columns.ClearFormats();
@@ -66,7 +65,7 @@
             var sales = new List<Sale>();
 
             string supermarketName = range.Value2[1, 1];
-            var supermarket = context.Supermarkets.First(x => x.SupermarketName == supermarketName);
+            var supermarket = context.Supermarkets.FirstOrDefault(x => x.SupermarketName == supermarketName);
 
             if (supermarket == null)
             {
@@ -100,14 +99,14 @@
             object misValue = System.Reflection.Missing.Value;
             workBook.Close(false, misValue, misValue);
 
-            this.ReleaseObject(workSheet);
-            this.ReleaseObject(workBook);
-            this.ReleaseObject(excel);
+            ReleaseObject(workSheet);
+            ReleaseObject(workBook);
+            ReleaseObject(excel);
 
             return sales;
         }
 
-        private void ReleaseObject(object obj)
+        private static void ReleaseObject(object obj)
         {
             System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
             obj = null;

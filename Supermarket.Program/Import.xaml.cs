@@ -1,6 +1,7 @@
 ﻿namespace Supermarket.Program
 {
     using System.Windows;
+    using System.Windows.Controls;
 
     using Microsoft.Win32;
 
@@ -15,8 +16,8 @@
         private const string FileType = ".zip";
         private const string FileFilter = "Archives (.zip)|*.zip";
         private const string ConfirmImport = "Begin import?";
-        private const string InsertError = "Inserting Failed!";
-        private const string InsertSuccess = "Inserting Successful";
+        private const string ImportError = "Importing Failed!";
+        private const string ImportSuccess = "Importing Successful!";
 
         public Import()
         {
@@ -39,20 +40,38 @@
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    try
-                    {
-                        var excel = new Excel();
-                        excel.Import(fileName, new SupermarketOracleContext());
-                        ImportDates.Text = string.Join("\r\n", excel.Import(fileName, new SupermarketSqlContext())) + "\r\nDone!";
-                    }
-                    catch
-                    {
-                        MessageBox.Show(InsertError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    }
+                    var importMenu = (ImportMenu.SelectedValue as ComboBoxItem).Content.ToString();
 
-                    MessageBox.Show(InsertSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    switch (importMenu)
+                    {
+                        case "Excel":
+                            ImportDates.Text = ExcelImport(fileName);
+                            break;
+                        case "PDF": break;
+                        case "XML": break;
+                        case "JSON": break;
+                        case "MySQL": break;
+                    }
                 }
             }
+        }
+
+        private string ExcelImport(string fileName)
+        {
+            var importDates = ImportError;
+
+            try
+            {
+                Excel.Import(fileName, new SupermarketOracleContext());
+                importDates = string.Join("\r\n", Excel.Import(fileName, new SupermarketSqlContext())) + "\r\nDone!";
+                MessageBox.Show(ImportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            catch
+            {
+                MessageBox.Show(ImportError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            return importDates;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -60,5 +79,6 @@
             new MainWindow().Show();
             this.Close();
         }
+
     }
 }
