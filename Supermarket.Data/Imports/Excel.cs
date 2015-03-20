@@ -16,9 +16,10 @@
         private const string FileName = "Excel.xls";
         private const string Dir = @"\Imports\";
 
-        public static List<string> Import(string path, ISupermarketContext context)
+        public static IEnumerable<DateTime> Import(string path, ISupermarketContext context)
         {
-            var reportDates = new List<string>();
+            var reportDates = new List<DateTime>();
+            var reportDate = new DateTime();
             var archive = ZipFile.OpenRead(path);
 
             using (archive)
@@ -27,7 +28,8 @@
                 {
                     if (entry.FullName.EndsWith("/"))
                     {
-                        reportDates.Add(entry.FullName.TrimEnd('/'));
+                        reportDate = DateTime.Parse(entry.FullName.TrimEnd('/'));
+                        reportDates.Add(reportDate);
                     }
                     else
                     {
@@ -37,7 +39,7 @@
                         }
 
                         entry.ExtractToFile(Path.Combine(Dir, FileName), true);
-                        var sales = ProcessExcel(string.Format("{0}{1}", Dir, FileName), context);
+                        var sales = ProcessExcel(string.Format("{0}{1}", Dir, FileName), reportDate, context);
 
                         foreach (var sale in sales)
                         {
@@ -52,7 +54,7 @@
             return reportDates;
         }
 
-        private static List<Sale> ProcessExcel(string file, ISupermarketContext context = null)
+        private static IEnumerable<Sale> ProcessExcel(string file, DateTime date, ISupermarketContext context = null)
         {
             var excel = new Application();
             var workBook = excel.Workbooks.Open(file, 0, true, 5, string.Empty, string.Empty, true, XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
@@ -88,6 +90,7 @@
                         {
                             SupermarketId = supermarket.SupermarketId,
                             ProductId = product.ProductId,
+                            DateSold = date,
                             Quantity = quantity,
                             UnitPrice = unitPrice,
                             SaleSum = quantity * unitPrice
