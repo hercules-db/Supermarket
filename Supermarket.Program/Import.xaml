@@ -16,7 +16,7 @@
             <ComboBoxItem Content="XML"/>
         </ComboBox>
         <TextBox x:Name="FileNameTextBox" HorizontalAlignment="Left" Margin="106,68,0,0" VerticalAlignment="Top" Height="30" Width="260" IsEnabled="False" />
-        <TextBlock Name="ImportDates" Height="100" Margin="10,103,94.6,7" FontSize="14" FontWeight="Bold"/>
+        <TextBlock Name="ImportedDates" Height="100" Margin="10,103,94.6,7" FontSize="14" FontWeight="Bold"/>
         <Button Content="Browse" HorizontalAlignment="Left" Margin="10,68,0,0" x:Name="Browse" VerticalAlignment="Top" Width="80" Height="30" Click="Browse_Click" />
         <Button Content="Back" HorizontalAlignment="Right" Margin="0,173,9.6,0" VerticalAlignment="Top" Width="80" Click="Back_Click" Height="30" RenderTransformOrigin="0.83,0.433"/>
     </Grid>

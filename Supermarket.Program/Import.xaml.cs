@@ -45,7 +45,7 @@
                     switch (importMenu)
                     {
                         case "Excel":
-                            ImportDates.Text = ExcelImport(fileName);
+                            ImportedDates.Text = ExcelImport(fileName);
                             break;
                         case "PDF": break;
                         case "XML": break;

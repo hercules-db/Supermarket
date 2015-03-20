@@ -14,11 +14,12 @@ namespace Supermarket.Data.Exports
         private const string FileName = "{0}.json";
         private static string reportsFolder = "../../../Reports/JSON/";
 
-        public static void Export(ISupermarketContext context, DateTime? startDate = null, DateTime? endDate = null)
+        public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
             var sales = (from s in context.Sales
                          join p in context.Products on s.ProductId equals p.ProductId
                          join v in context.Vendors on p.VendorId equals v.VendorId
+                         where s.DateSold >= startDate && s.DateSold <= endDate
                          select new
                          {
                              s.ProductId,
@@ -30,20 +31,17 @@ namespace Supermarket.Data.Exports
 
             var serialize = new JavaScriptSerializer();
 
-            if (!Directory.Exists(reportsFolder))
+            Directory.CreateDirectory(reportsFolder);
+
+            for (int i = 0; i < sales.Count; i++)
             {
-                Directory.CreateDirectory(reportsFolder);
+                var jsonSale = serialize.Serialize(sales[i]);
+                var fileName = string.Format(FileName, string.Format("{0}. {1}", i + 1, sales[i].ProductId));
+                var writer = new StreamWriter(string.Concat(reportsFolder, fileName));
 
-                for (int i = 0; i < sales.Count; i++)
+                using (writer)
                 {
-                    var jsonSale = serialize.Serialize(sales[i]);
-                    var fileName = string.Format(FileName, string.Format("{0}. {1}", i + 1, sales[i].ProductId));
-                    var writer = new StreamWriter(string.Concat(reportsFolder, fileName));
-
-                    using (writer)
-                    {
-                        writer.WriteLine(jsonSale);
-                    }
+                    writer.WriteLine(jsonSale);
                 }
             }
         }
