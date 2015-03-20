@@ -2,8 +2,9 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using Supermarket.Data.Context;
-    using Supermarket.Data.Exports;
+
+    using Data.Context;
+    using Data.Exports;
 
     /// <summary>
     /// Interaction logic for Export.xaml

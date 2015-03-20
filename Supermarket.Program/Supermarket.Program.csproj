@@ -131,10 +131,6 @@
       <Project>{c6ac52cf-aaeb-4004-bc8b-85616f8c8acc}</Project>
       <Name>Supermarket.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supermarket.Models\Supermarket.Models.csproj">
-      <Project>{fceed6c7-4819-4c70-a437-3cb855209731}</Project>
-      <Name>Supermarket.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
