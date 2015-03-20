@@ -1,5 +1,6 @@
 ﻿namespace Supermarket.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class Sale
@@ -12,6 +13,11 @@
 
         [Required]
         public int ProductId { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DateSold { get; set; }
 
         [Required]
         public long Quantity { get; set; }

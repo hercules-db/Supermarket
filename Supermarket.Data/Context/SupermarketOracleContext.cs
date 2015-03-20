@@ -45,6 +45,7 @@
             modelBuilder.Entity<Sale>().Property(p => p.SaleId).HasColumnName("SALE_ID");
             modelBuilder.Entity<Sale>().Property(p => p.SupermarketId).HasColumnName("SUPERMARKET_ID");
             modelBuilder.Entity<Sale>().Property(p => p.ProductId).HasColumnName("PRODUCT_ID");
+            modelBuilder.Entity<Sale>().Property(p => p.DateSold).HasColumnName("DATE_SOLD");
             modelBuilder.Entity<Sale>().Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE");
             modelBuilder.Entity<Sale>().Property(p => p.Quantity).HasColumnName("QUANTITY");
             modelBuilder.Entity<Sale>().Property(p => p.SaleSum).HasColumnName("SALE_SUM");
