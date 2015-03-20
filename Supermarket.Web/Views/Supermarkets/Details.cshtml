@@ -1,0 +1,26 @@
+﻿@model Supermarket.Models.Supermarket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Supermarket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupermarketName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupermarketName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SupermarketId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

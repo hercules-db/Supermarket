@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Program", "Supe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Console", "Supermarket.Console\Supermarket.Console.csproj", "{8434B0BC-2DFD-40F2-9641-1BEC2A4E1364}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Web", "Supermarket.Web\Supermarket.Web.csproj", "{CED3D794-C1C0-4070-87AD-BB2E0E47ADBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8434B0BC-2DFD-40F2-9641-1BEC2A4E1364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8434B0BC-2DFD-40F2-9641-1BEC2A4E1364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8434B0BC-2DFD-40F2-9641-1BEC2A4E1364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED3D794-C1C0-4070-87AD-BB2E0E47ADBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED3D794-C1C0-4070-87AD-BB2E0E47ADBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED3D794-C1C0-4070-87AD-BB2E0E47ADBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED3D794-C1C0-4070-87AD-BB2E0E47ADBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
