@@ -1,4 +1,6 @@
-﻿namespace Supermarket.Data.Exports
+﻿using Supermarket.Models;
+
+namespace Supermarket.Data.Exports
 {
     using System;
     using System.IO;
@@ -14,14 +16,16 @@
 
         public static void Export(ISupermarketContext context, DateTime? startDate = null, DateTime? endDate = null)
         {
-            var sales = (from sale in context.Sales
+            var sales = (from s in context.Sales
+                         join p in context.Products on s.ProductId equals p.ProductId
+                         join v in context.Vendors on p.VendorId equals v.VendorId
                          select new
                          {
-                             sale.ProductId,
-                             ProductName = "",
-                             VendorName = "",
-                             QuantitySold = sale.Quantity,
-                             TotalIncomes = sale.SaleSum
+                             s.ProductId,
+                             p.ProductName,
+                             v.VendorName,
+                             QuantitySold = s.Quantity,
+                             TotalIncomes = s.SaleSum
                          }).ToList();
 
             var serialize = new JavaScriptSerializer();
