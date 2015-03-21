@@ -24,8 +24,9 @@
 
             int numberOfColumn = 5;
 
-            var PdfTable = new PdfPTable(numberOfColumn);
-            PdfTable.HorizontalAlignment = 1;
+            var pdfTable = new PdfPTable(numberOfColumn);
+            pdfTable.HorizontalAlignment = 1;
+
             var cellHeader = new PdfPCell(new Phrase(DocumentHeaderTitle));
 
             var productsData = (
@@ -43,15 +44,15 @@
             }
             );
 
-            //Add report Date
-            PdfTable.AddCell(new Phrase(endDate.ToString()));
+            // Add report Date
+            pdfTable.AddCell(new Phrase(endDate.ToString()));
 
 
             cellHeader.Colspan = numberOfColumn;
             cellHeader.HorizontalAlignment = 1;
-            PdfTable.AddCell(cellHeader);
+            pdfTable.AddCell(cellHeader);
             
-            //Add labels
+            // Add labels
             var productLabel = new PdfPCell(new Phrase("Product"));
             var quantityLabel = new PdfPCell(new Phrase("Quantity"));
             var unitPriceLabel = new PdfPCell(new Phrase("Unit Price"));
@@ -70,11 +71,11 @@
             locationlabel.BackgroundColor = BaseColor.CYAN;
             sumLabel.BackgroundColor = BaseColor.CYAN;
 
-            PdfTable.AddCell(productLabel);
-            PdfTable.AddCell(quantityLabel);
-            PdfTable.AddCell(unitPriceLabel);
-            PdfTable.AddCell(locationlabel);
-            PdfTable.AddCell(sumLabel);
+            pdfTable.AddCell(productLabel);
+            pdfTable.AddCell(quantityLabel);
+            pdfTable.AddCell(unitPriceLabel);
+            pdfTable.AddCell(locationlabel);
+            pdfTable.AddCell(sumLabel);
 
 
             foreach (var product in productsData)
@@ -85,13 +86,14 @@
                 var cellLocation = product.location.ToString();
                 var cellProductSaleSum = product.productSaleSum.ToString();
 
-                PdfTable.AddCell(cellProductName);
-                PdfTable.AddCell(cellQuantity);
-                PdfTable.AddCell(cellUnitPrice);
-                PdfTable.AddCell(cellLocation);
-                PdfTable.AddCell(cellProductSaleSum);
+                pdfTable.AddCell(cellProductName);
+                pdfTable.AddCell(cellQuantity);
+                pdfTable.AddCell(cellUnitPrice);
+                pdfTable.AddCell(cellLocation);
+                pdfTable.AddCell(cellProductSaleSum);
             }
-            document.Add(PdfTable);
+
+            document.Add(pdfTable);
             document.Close();
             file.Close();
         }

@@ -32,7 +32,7 @@
                 switch (exportMenu)
                 {
                     case "Excel": Excel.Export(context); break; // TODO
-                    case "PDF": Pdf.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break; // TODO
+                    case "PDF": Pdf.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
                     case "XML": Xml.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
                     case "JSON": Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
                     case "MySQL": break; // TODO

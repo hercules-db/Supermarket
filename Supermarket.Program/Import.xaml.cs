@@ -36,42 +36,30 @@
                 string fileName = dialog.FileName;
                 FileNameTextBox.Text = fileName;
 
-                var result = MessageBox.Show(ConfirmImport, MessageStatus.Confirmation.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var confirm = MessageBox.Show(ConfirmImport, MessageStatus.Confirmation.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.Yes)
+                if (confirm == MessageBoxResult.Yes)
                 {
                     var importMenu = (ImportMenu.SelectedValue as ComboBoxItem).Content.ToString();
+                    var context = new SupermarketSqlContext();
 
-                    switch (importMenu)
+                    try
                     {
-                        case "Excel":
-                            ImportedDates.Text = ExcelImport(fileName);
-                            break;
-                        case "PDF": break;
-                        case "XML": break;
-                        case "JSON": break;
-                        case "MySQL": break;
+                        switch (importMenu)
+                        {
+                            case "Excel": ImportedDates.Text = string.Join("\r\n", Excel.Import(fileName, context)) + "\r\nDone!"; break;
+                            case "XML": Xml.Import(context); break; // TODO
+                            case "Mongo": Mongo.Import(context); break; // TODO
+                        }
+
+                        MessageBox.Show(ImportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    }
+                    catch
+                    {
+                        MessageBox.Show(ImportError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }
             }
-        }
-
-        private string ExcelImport(string fileName)
-        {
-            var importDates = ImportError;
-
-            try
-            {
-                Excel.Import(fileName, new SupermarketOracleContext());
-                importDates = string.Join("\r\n", Excel.Import(fileName, new SupermarketSqlContext())) + "\r\nDone!";
-                MessageBox.Show(ImportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            }
-            catch
-            {
-                MessageBox.Show(ImportError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-
-            return importDates;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

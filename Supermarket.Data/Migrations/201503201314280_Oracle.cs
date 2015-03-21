@@ -1,4 +1,3 @@
-/*
 namespace Supermarket.Data.Migrations
 {
     using System;
@@ -89,4 +88,3 @@ namespace Supermarket.Data.Migrations
         }
     }
 }
-*/
