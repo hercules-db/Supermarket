@@ -13,9 +13,10 @@
 
     public class Excel
     {
+        private const string FileName = "Temp.xls";
+
         private static readonly string FolderLocation =
             Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Imports\Excel\");
-        private const string FileName = "Temp.xls";
 
         public static IEnumerable<DateTime> Import(string path, ISupermarketContext context)
         {

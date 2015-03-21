@@ -88,5 +88,4 @@ namespace Supermarket.Data.Migrations
             DropTable("dbo.Measures");
         }
     }
-}
-*/
+}*/

@@ -31,11 +31,19 @@
             {
                 switch (exportMenu)
                 {
-                    case "Excel": Excel.Export(context); break; // TODO
-                    case "PDF": Pdf.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
-                    case "XML": Xml.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
-                    case "JSON": Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); break;
-                    case "MySQL": break; // TODO
+                    case "Excel":
+                        Excel.Export(context); // TODO
+                        break; 
+                    case "PDF":
+                        Pdf.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
+                        break;
+                    case "XML":
+                        Xml.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
+                        break;
+                    case "JSON":
+                        Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); // TODO
+                        break;
+                    case "MySQL": break; 
                 }
 
                 MessageBox.Show(ExportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);

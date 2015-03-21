@@ -8,12 +8,10 @@
         {
             using (var oracle = new SupermarketOracleContext())
             {
-                
             }
 
             using (var sql = new SupermarketSqlContext())
             {
-                
             }
         }
     }

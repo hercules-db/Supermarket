@@ -9,10 +9,10 @@
 
     public class Xml
     {
+        private const string FileName = "Sales-by-Vendors-Report.xml";
 
         private static readonly string FolderLocation =
             Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\XML\");
-        private const string FileName = "Sales-by-Vendors-Report.xml";
 
         public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
@@ -34,8 +34,7 @@
                 .Select(date => new XElement(
                     "summary",
                     new XAttribute("date", date.Key.ToShortDateString()),
-                    new XAttribute("total-sum", date.Value.sum)
-                    ));
+                    new XAttribute("total-sum", date.Value.sum)));
 
                 root.Add(new XElement("sale", new XAttribute("vendor", vendor.VendorName), sales));
             }

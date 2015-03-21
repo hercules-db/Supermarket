@@ -11,9 +11,11 @@
 
     public class Pdf
     {
-        private const string FilePath = @"Aggregated Sales Report.pdf";
-
         private const string DocumentHeaderTitle = "Aggregated Sales Report";
+        private const int NumberOfColumn = 5;
+
+        private static readonly string FilePath =
+            Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\PDF\Aggregated-Sales-Report.pdf");
 
         public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
@@ -22,36 +24,32 @@
             PdfWriter.GetInstance(document, file);
             document.Open();
 
-            int numberOfColumn = 5;
-
-            var pdfTable = new PdfPTable(numberOfColumn);
+            var pdfTable = new PdfPTable(NumberOfColumn);
             pdfTable.HorizontalAlignment = 1;
 
             var cellHeader = new PdfPCell(new Phrase(DocumentHeaderTitle));
 
-            var productsData = (
-            from p in context.Products
-            group p by p.ProductName into gr
-            join s in context.Sales on gr.FirstOrDefault().ProductId equals s.ProductId into ps
-            join m in context.Supermarkets on ps.FirstOrDefault().SupermarketId equals m.SupermarketId
-            select new
-            {
-                productName = gr.FirstOrDefault().ProductName,
-                quantity = ps.FirstOrDefault().Quantity,
-                unitPrice = ps.FirstOrDefault().UnitPrice,
-                location = m.SupermarketName,
-                productSaleSum = ps.Sum(sum => sum.SaleSum)
-            }
-            );
+            var productsData = from p in context.Products
+                               group p by p.ProductName
+                                   into gr
+                                   join s in context.Sales on gr.FirstOrDefault().ProductId equals s.ProductId into ps
+                                   join m in context.Supermarkets on ps.FirstOrDefault().SupermarketId equals m.SupermarketId
+                                   select new
+                                   {
+                                       productName = gr.FirstOrDefault().ProductName,
+                                       quantity = ps.FirstOrDefault().Quantity,
+                                       unitPrice = ps.FirstOrDefault().UnitPrice,
+                                       location = m.SupermarketName,
+                                       productSaleSum = ps.Sum(sum => sum.SaleSum)
+                                   };
 
             // Add report Date
             pdfTable.AddCell(new Phrase(endDate.ToString()));
 
-
-            cellHeader.Colspan = numberOfColumn;
+            cellHeader.Colspan = NumberOfColumn;
             cellHeader.HorizontalAlignment = 1;
             pdfTable.AddCell(cellHeader);
-            
+
             // Add labels
             var productLabel = new PdfPCell(new Phrase("Product"));
             var quantityLabel = new PdfPCell(new Phrase("Quantity"));
@@ -77,20 +75,13 @@
             pdfTable.AddCell(locationlabel);
             pdfTable.AddCell(sumLabel);
 
-
             foreach (var product in productsData)
             {
-                var cellProductName = product.productName.ToString();
-                var cellQuantity = product.quantity.ToString();
-                var cellUnitPrice = product.unitPrice.ToString();
-                var cellLocation = product.location.ToString();
-                var cellProductSaleSum = product.productSaleSum.ToString();
-
-                pdfTable.AddCell(cellProductName);
-                pdfTable.AddCell(cellQuantity);
-                pdfTable.AddCell(cellUnitPrice);
-                pdfTable.AddCell(cellLocation);
-                pdfTable.AddCell(cellProductSaleSum);
+                pdfTable.AddCell(product.productName);
+                pdfTable.AddCell(product.quantity.ToString());
+                pdfTable.AddCell(product.unitPrice.ToString());
+                pdfTable.AddCell(product.location);
+                pdfTable.AddCell(product.productSaleSum.ToString());
             }
 
             document.Add(pdfTable);

@@ -47,9 +47,15 @@
                     {
                         switch (importMenu)
                         {
-                            case "Excel": ImportedDates.Text = string.Join("\r\n", Excel.Import(fileName, context)) + "\r\nDone!"; break;
-                            case "XML": Xml.Import(context); break; // TODO
-                            case "Mongo": Mongo.Import(context); break; // TODO
+                            case "Excel":
+                                ImportedDates.Text = string.Join("\r\n", Excel.Import(fileName, context)) + "\r\nDone!";
+                                break;
+                            case "XML":
+                                Xml.Import(context); // TODO
+                                break;
+                            case "Mongo":
+                                Mongo.Import(context); // TODO
+                                break;
                         }
 
                         MessageBox.Show(ImportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -67,6 +73,5 @@
             new MainWindow().Show();
             this.Close();
         }
-
     }
 }

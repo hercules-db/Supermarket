@@ -9,9 +9,10 @@
 
     public class Json
     {
+        private const string FileName = "{0}.json";
+
         private static readonly string FolderPath =
             Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\JSON\");
-        private const string FileName = "{0}.json";
 
         public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
