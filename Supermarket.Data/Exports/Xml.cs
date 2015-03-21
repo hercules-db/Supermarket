@@ -11,7 +11,7 @@
     {
         private const string FileName = "Sales-by-Vendors-Report.xml";
 
-        private static readonly string FolderLocation =
+        private static readonly string FilePath =
             Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\XML\");
 
         public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
@@ -19,7 +19,7 @@
             var root = new XElement("sales");
             var vendors = context.Vendors.ToList();
 
-            Directory.CreateDirectory(FolderLocation);
+            Directory.CreateDirectory(FilePath);
 
             foreach (var vendor in vendors)
             {
@@ -39,7 +39,7 @@
                 root.Add(new XElement("sale", new XAttribute("vendor", vendor.VendorName), sales));
             }
 
-            root.Save(Path.Combine(FolderLocation, FileName));
+            root.Save(Path.Combine(FilePath, FileName));
         }
     }
 }

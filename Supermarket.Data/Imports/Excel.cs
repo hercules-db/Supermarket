@@ -15,7 +15,7 @@
     {
         private const string FileName = "Temp.xls";
 
-        private static readonly string FolderLocation =
+        private static readonly string FilePath =
             Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Imports\Excel\");
 
         public static IEnumerable<DateTime> Import(string path, ISupermarketContext context)
@@ -35,10 +35,10 @@
                     }
                     else
                     {
-                        Directory.CreateDirectory(FolderLocation);
+                        Directory.CreateDirectory(FilePath);
 
-                        entry.ExtractToFile(Path.Combine(FolderLocation, FileName), true);
-                        var sales = ProcessExcel(string.Concat(FolderLocation, FileName), reportDate, context);
+                        entry.ExtractToFile(Path.Combine(FilePath, FileName), true);
+                        var sales = ProcessExcel(string.Concat(FilePath, FileName), reportDate, context);
 
                         foreach (var sale in sales)
                         {

@@ -13,14 +13,16 @@
     {
         private const string DocumentHeaderTitle = "Aggregated Sales Report";
         private const int NumberOfColumn = 5;
+        private const string FileName = "{0}.pdf";
 
-        private static readonly string FilePath =
-            Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\PDF\Aggregated-Sales-Report.pdf");
+        private static readonly string FilePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Exports\PDF\");
 
         public static void Export(ISupermarketContext context, DateTime? startDate, DateTime? endDate)
         {
             var document = new Document(PageSize.LETTER, 10, 10, 42, 35);
-            var file = new FileStream(FilePath, FileMode.OpenOrCreate);
+            Directory.CreateDirectory(FilePath);
+
+            var file = new FileStream(Path.Combine(FilePath, string.Format(FileName, DocumentHeaderTitle)), FileMode.OpenOrCreate);
             PdfWriter.GetInstance(document, file);
             document.Open();
 

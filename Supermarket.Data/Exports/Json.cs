@@ -37,7 +37,7 @@
             {
                 var jsonSale = serialize.Serialize(sales[i]);
                 var fileName = string.Format(FileName, string.Format("{0}. {1}", i + 1, sales[i].ProductId));
-                var writer = new StreamWriter(string.Concat(FolderPath, fileName));
+                var writer = new StreamWriter(Path.Combine(FolderPath, fileName));
 
                 using (writer)
                 {
