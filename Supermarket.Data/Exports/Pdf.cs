@@ -31,11 +31,11 @@
             var data = (
                         from m in context.Supermarkets
                         group m by m.SupermarketName into g
-                        join s in context.Sales on g.FirstOrDefault().SupermarketId equals s.SupermarketId
+                        join s in context.Sales on g.FirstOrDefault().SupermarketId equals s.SupermarketId into sm
                         select new
                         {
                             marketName = g.FirstOrDefault().SupermarketName,
-                            saleSum = g.Sum(sum => s.SaleSum)
+                            saleSum = sm.Sum(d => d.SaleSum)
                         }
                         );
 
@@ -48,7 +48,7 @@
             foreach (var sale in data)
             {
       //          var cellSaleId = sale.saleId.ToString();
-                var cellSaleSum = sale.saleSum.ToString();
+                var cellSaleSum = sale.saleSum.ToString() + " лв.";
                 var cellSaleSupermarketName = sale.marketName.ToString();
 
          //       PdfTable.AddCell(cellSaleId);
