@@ -41,10 +41,10 @@
                         Xml.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
                         break;
                     case "JSON":
-                        Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); // TODO
+                        Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
                         break;
                     case "MySQL": 
-                        MySQL.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
+                        MySql.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
                         break; 
                 }
 
