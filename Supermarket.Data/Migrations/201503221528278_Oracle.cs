@@ -104,5 +104,4 @@ namespace Supermarket.Data.Migrations
             DropTable("HERCULES.EXPENSES");
         }
     }
-}
-*/
+}*/

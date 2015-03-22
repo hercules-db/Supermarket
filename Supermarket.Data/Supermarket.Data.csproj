@@ -82,11 +82,15 @@
     <Compile Include="Imports\Excel.cs" />
     <Compile Include="Imports\Mongo.cs" />
     <Compile Include="Imports\Xml.cs" />
-    <Compile Include="Migrations\201503221528278_Oracle.cs" />
+    <Compile Include="Migrations\201503221528278_Oracle.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201503221528278_Oracle.Designer.cs">
       <DependentUpon>201503221528278_Oracle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503221531545_Sql.cs" />
+    <Compile Include="Migrations\201503221531545_Sql.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201503221531545_Sql.Designer.cs">
       <DependentUpon>201503221531545_Sql.cs</DependentUpon>
     </Compile>

@@ -25,11 +25,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Measure measure = db.Measures.Find(id);
             if (measure == null)
             {
                 return HttpNotFound();
             }
+
             return View(measure);
         }
 
@@ -63,11 +65,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Measure measure = db.Measures.Find(id);
             if (measure == null)
             {
                 return HttpNotFound();
             }
+
             return View(measure);
         }
 
@@ -84,6 +88,7 @@
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(measure);
         }
 
@@ -94,11 +99,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Measure measure = db.Measures.Find(id);
             if (measure == null)
             {
                 return HttpNotFound();
             }
+
             return View(measure);
         }
 
@@ -119,6 +126,7 @@
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

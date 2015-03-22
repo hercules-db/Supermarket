@@ -6,7 +6,6 @@
     {
         public static void Import(ISupermarketContext context)
         {
-            
         }
     }
 }

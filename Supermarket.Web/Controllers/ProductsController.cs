@@ -26,11 +26,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
+
             return View(product);
         }
 
@@ -68,11 +70,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "MeasureName", product.MeasureId);
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorName", product.VendorId);
             return View(product);
@@ -91,6 +95,7 @@
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "MeasureName", product.MeasureId);
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorName", product.VendorId);
             return View(product);
@@ -103,11 +108,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
+
             return View(product);
         }
 
@@ -128,6 +135,7 @@
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

@@ -6,7 +6,6 @@
     {
         public static void Export(ISupermarketContext context)
         {
-            
         }
     }
 }

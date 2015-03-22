@@ -24,11 +24,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Models.Supermarket supermarket = db.Supermarkets.Find(id);
             if (supermarket == null)
             {
                 return HttpNotFound();
             }
+
             return View(supermarket);
         }
 
@@ -62,11 +64,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Models.Supermarket supermarket = db.Supermarkets.Find(id);
             if (supermarket == null)
             {
                 return HttpNotFound();
             }
+
             return View(supermarket);
         }
 
@@ -83,6 +87,7 @@
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(supermarket);
         }
 
@@ -93,11 +98,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Models.Supermarket supermarket = db.Supermarkets.Find(id);
             if (supermarket == null)
             {
                 return HttpNotFound();
             }
+
             return View(supermarket);
         }
 
@@ -118,6 +125,7 @@
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

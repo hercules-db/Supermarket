@@ -26,11 +26,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Sale sale = db.Sales.Find(id);
             if (sale == null)
             {
                 return HttpNotFound();
             }
+
             return View(sale);
         }
 
@@ -68,11 +70,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Sale sale = db.Sales.Find(id);
             if (sale == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.ProductId = new SelectList(db.Products, "ProductId", "ProductName", sale.ProductId);
             ViewBag.SupermarketId = new SelectList(db.Supermarkets, "SupermarketId", "SupermarketName", sale.SupermarketId);
             return View(sale);
@@ -91,6 +95,7 @@
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.ProductId = new SelectList(db.Products, "ProductId", "ProductName", sale.ProductId);
             ViewBag.SupermarketId = new SelectList(db.Supermarkets, "SupermarketId", "SupermarketName", sale.SupermarketId);
             return View(sale);
@@ -103,11 +108,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Sale sale = db.Sales.Find(id);
             if (sale == null)
             {
                 return HttpNotFound();
             }
+
             return View(sale);
         }
 
@@ -128,6 +135,7 @@
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

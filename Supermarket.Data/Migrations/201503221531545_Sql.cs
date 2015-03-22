@@ -80,7 +80,6 @@ namespace Supermarket.Data.Migrations
                         SupermarketName = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.SupermarketId);
-            
         }
         
         public override void Down()

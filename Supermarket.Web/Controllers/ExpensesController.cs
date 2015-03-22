@@ -26,11 +26,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Expense expense = db.Expenses.Find(id);
             if (expense == null)
             {
                 return HttpNotFound();
             }
+
             return View(expense);
         }
 
@@ -66,11 +68,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Expense expense = db.Expenses.Find(id);
             if (expense == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorName", expense.VendorId);
             return View(expense);
         }
@@ -88,6 +92,7 @@
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.VendorId = new SelectList(db.Vendors, "VendorId", "VendorName", expense.VendorId);
             return View(expense);
         }
@@ -99,11 +104,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Expense expense = db.Expenses.Find(id);
             if (expense == null)
             {
                 return HttpNotFound();
             }
+
             return View(expense);
         }
 
@@ -124,6 +131,7 @@
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

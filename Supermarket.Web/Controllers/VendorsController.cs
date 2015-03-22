@@ -25,11 +25,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
             {
                 return HttpNotFound();
             }
+
             return View(vendor);
         }
 
@@ -63,11 +65,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
             {
                 return HttpNotFound();
             }
+
             return View(vendor);
         }
 
@@ -84,6 +88,7 @@
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(vendor);
         }
 
@@ -94,11 +99,13 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
             {
                 return HttpNotFound();
             }
+
             return View(vendor);
         }
 
@@ -119,6 +126,7 @@
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

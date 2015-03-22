@@ -19,7 +19,6 @@
 
             foreach (XmlNode node in rootNode.ChildNodes)
             {
-
                 var vendor = node.Attributes["name"].Value;
 
                 foreach (XmlNode n in node.ChildNodes)
