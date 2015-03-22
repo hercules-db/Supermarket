@@ -56,7 +56,6 @@
                 if (confirm == MessageBoxResult.Yes)
                 {
                     var context = new SupermarketSqlContext();
-                    Xml.Import(fileName, context);
 
                     try
                     {
