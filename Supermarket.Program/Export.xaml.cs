@@ -43,7 +43,9 @@
                     case "JSON":
                         Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate); // TODO
                         break;
-                    case "MySQL": break; 
+                    case "MySQL": 
+                        MySQL.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
+                        break; 
                 }
 
                 MessageBox.Show(ExportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);

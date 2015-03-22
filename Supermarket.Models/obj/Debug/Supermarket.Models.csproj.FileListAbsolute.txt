@@ -1,0 +1,8 @@
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\bin\Debug\Supermarket.Models.dll.config
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\bin\Debug\Supermarket.Models.dll
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\bin\Debug\Supermarket.Models.pdb
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\bin\Debug\EntityFramework.dll
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\bin\Debug\EntityFramework.xml
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\obj\Debug\Supermarket.Models.dll
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\obj\Debug\Supermarket.Models.pdb
+C:\Users\vasko\Desktop\GitTest\supermarket\Supermarket.Models\bin\Debug\MySql.Data.Entity.EF6.dll
