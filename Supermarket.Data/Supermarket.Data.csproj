@@ -97,6 +97,7 @@
     <Compile Include="Context\SupermarketContext.cs" />
     <Compile Include="Context\SupermarketOracleContext.cs" />
     <Compile Include="Context\SupermarketSqlContext.cs" />
+    <Compile Include="Sync\SyncDatabases.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

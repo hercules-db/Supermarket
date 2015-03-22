@@ -7,5 +7,6 @@
         <Button Content="Export" HorizontalAlignment="Right" Margin="0,17,9.6,0" VerticalAlignment="Top" Width="95" Height="35" Click="Export_Click"/>
         <Button Content="Sync" HorizontalAlignment="Left" Margin="153,17,0,0" VerticalAlignment="Top" Width="90" Height="35" Click="Sync_Click"/>
         <Button Content="Exit" HorizontalAlignment="Right" Margin="0,175,10,0" VerticalAlignment="Top" Width="80" Height="30" Click="Exit_Click"/>
+        <Button Content="Copy To MYSQL" HorizontalAlignment="Left" Margin="133,90,0,0" VerticalAlignment="Top" Width="130" Height="35" Cursor="Hand" Click="ToMySql_Click" ToolTip="Click to Transfer All Income end Expenses information to MySQL DB"/>
     </Grid>
 </Window>

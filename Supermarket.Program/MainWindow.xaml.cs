@@ -4,6 +4,7 @@
 
     using Data.Context;
     using Data.Migrations;
+    using Data.Sync;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -40,6 +41,19 @@
             try
             {
                 Configuration.Sync(new SupermarketSqlContext());
+                MessageBox.Show(SyncSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            catch
+            {
+                MessageBox.Show(SyncError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void ToMySql_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SyncDatabases.MsSqlMySql(new SupermarketMySqlContext());
                 MessageBox.Show(SyncSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch
