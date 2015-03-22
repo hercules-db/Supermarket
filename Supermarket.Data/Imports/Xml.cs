@@ -1,9 +1,12 @@
 ﻿namespace Supermarket.Data.Imports
 {
+    using System;
+    using System.Linq;
     using System.Xml;
 
     using Context;
-    
+    using Models;
+
     public class Xml
     {
         public static void Import(string fileName, ISupermarketContext context)
@@ -16,11 +19,21 @@
 
             foreach (XmlNode node in rootNode.ChildNodes)
             {
-                var vendor = node.Value;
 
+                var vendor = node.Attributes["name"].Value;
 
-                /*var expenseMonth = this.GetValue(node, "information");
-                var expenseAmount =decimal.Parse(this.GetValue(node, "price"));*/
+                foreach (XmlNode n in node.ChildNodes)
+                {
+                    var month = n.Attributes["month"].Value;
+                    var expense = n.InnerText;
+
+                    context.Expenses.Add(new Expense()
+                    {
+                        VendorId = context.Vendors.First(x => x.VendorName == vendor).VendorId,
+                        ExpenseDate = DateTime.Parse(month),
+                        ExpenseAmount = decimal.Parse(expense)
+                    });
+                }
             }
 
             context.SaveChanges();

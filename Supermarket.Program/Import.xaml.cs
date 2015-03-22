@@ -1,5 +1,6 @@
 ﻿namespace Supermarket.Program
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -65,7 +66,7 @@
                                 ImportedDates.Text = string.Join("\r\n", Excel.Import(fileName, context)) + "\r\nDone!";
                                 break;
                             case "XML":
-                                //Xml.Import(fileName, context); // TODO
+                                Xml.Import(fileName, context);
                                 break;
                             case "Mongo":
                                 Mongo.Import(context); // TODO
@@ -74,8 +75,9 @@
 
                         MessageBox.Show(ImportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Console.WriteLine(ex);
                         MessageBox.Show(ImportError, MessageStatus.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }

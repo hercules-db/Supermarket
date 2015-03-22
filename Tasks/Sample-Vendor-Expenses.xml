@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8">
+<?xml version="1.0" encoding="UTF-8"?>
 <expenses-by-month>
   <vendor name="Nestle Sofia Corp.">
     <expenses month="Jul-2013">30.00</expenses>
@@ -12,4 +12,4 @@
     <expenses month="Jul-2013">120.00</expenses>
     <expenses month="Aug-2013">180.00</expenses>
   </vendor>
-<expenses-by-month>
+</expenses-by-month>
