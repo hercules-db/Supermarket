@@ -10,7 +10,7 @@
 
     public class SalesController : Controller
     {
-        private SupermarketOracleContext db = new SupermarketOracleContext();
+        private SupermarketSqlContext db = new SupermarketSqlContext();
 
         // GET: Sales
         public ActionResult Index()

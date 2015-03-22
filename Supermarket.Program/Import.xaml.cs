@@ -13,8 +13,12 @@
     /// </summary>
     public partial class Import : Window
     {
-        private const string FileType = ".zip";
-        private const string FileFilter = "Archives (.zip)|*.zip";
+        private const string FileTypeZip = ".zip";
+        private const string FileFilterZip = "Archives (.zip)|*.zip";
+
+        private const string FileTypeXml = ".xml";
+        private const string FileFilterXml = "Archives (.xml)|*.xml";
+
         private const string ConfirmImport = "Begin import?";
         private const string ImportError = "Importing Failed!";
         private const string ImportSuccess = "Importing Successful!";
@@ -27,9 +31,20 @@
         private void Browse_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
+            var importMenu = (ImportMenu.SelectedValue as ComboBoxItem).Content.ToString();
 
-            dialog.DefaultExt = FileType;
-            dialog.Filter = FileFilter;
+            switch (importMenu)
+            {
+                case "Excel":
+                    dialog.DefaultExt = FileTypeZip;
+                    dialog.Filter = FileFilterZip;
+                    break;
+                case "XML":
+                    dialog.DefaultExt = FileTypeXml;
+                    dialog.Filter = FileFilterXml;
+                    break;
+                case "Mongo": break; // TODO
+            }
 
             if (dialog.ShowDialog() == true)
             {
@@ -40,8 +55,8 @@
 
                 if (confirm == MessageBoxResult.Yes)
                 {
-                    var importMenu = (ImportMenu.SelectedValue as ComboBoxItem).Content.ToString();
                     var context = new SupermarketSqlContext();
+                    Xml.Import(fileName, context);
 
                     try
                     {
@@ -51,7 +66,7 @@
                                 ImportedDates.Text = string.Join("\r\n", Excel.Import(fileName, context)) + "\r\nDone!";
                                 break;
                             case "XML":
-                                Xml.Import(context); // TODO
+                                //Xml.Import(fileName, context); // TODO
                                 break;
                             case "Mongo":
                                 Mongo.Import(context); // TODO

@@ -10,7 +10,7 @@
 
     public class MeasuresController : Controller
     {
-        private SupermarketOracleContext db = new SupermarketOracleContext();
+        private SupermarketSqlContext db = new SupermarketSqlContext();
 
         // GET: Measures
         public ActionResult Index()

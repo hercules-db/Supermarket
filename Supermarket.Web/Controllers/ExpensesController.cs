@@ -10,7 +10,7 @@
 
     public class ExpensesController : Controller
     {
-        private SupermarketOracleContext db = new SupermarketOracleContext();
+        private SupermarketSqlContext db = new SupermarketSqlContext();
 
         // GET: Expenses
         public ActionResult Index()
