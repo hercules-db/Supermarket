@@ -21,11 +21,12 @@
         {
             modelBuilder.HasDefaultSchema("HERCULES");
 
-            modelBuilder.Entity<Supermarket>().ToTable("SUPERMARKETS", "HERCULES");
-            modelBuilder.Entity<Product>().ToTable("PRODUCTS", "HERCULES");
             modelBuilder.Entity<Measure>().ToTable("MEASURES", "HERCULES");
-            modelBuilder.Entity<Vendor>().ToTable("VENDORS", "HERCULES");
+            modelBuilder.Entity<Supermarket>().ToTable("SUPERMARKETS", "HERCULES");
             modelBuilder.Entity<Sale>().ToTable("SALES", "HERCULES");
+            modelBuilder.Entity<Expense>().ToTable("EXPENSES", "HERCULES");
+            modelBuilder.Entity<Vendor>().ToTable("VENDORS", "HERCULES");
+            modelBuilder.Entity<Product>().ToTable("PRODUCTS", "HERCULES");
 
             modelBuilder.Entity<Supermarket>().Property(p => p.SupermarketId).HasColumnName("SUPERMARKET_ID");
             modelBuilder.Entity<Supermarket>().Property(p => p.SupermarketName).HasColumnName("SUPERMARKET_NAME");
@@ -49,6 +50,13 @@
             modelBuilder.Entity<Sale>().Property(p => p.UnitPrice).HasColumnName("UNIT_PRICE");
             modelBuilder.Entity<Sale>().Property(p => p.Quantity).HasColumnName("QUANTITY");
             modelBuilder.Entity<Sale>().Property(p => p.SaleSum).HasColumnName("SALE_SUM");
+
+            modelBuilder.Entity<Expense>().Property(p => p.ExpenseId).HasColumnName("EXPENSE_ID");
+            modelBuilder.Entity<Expense>().Property(p => p.VendorId).HasColumnName("VENDOR_ID");
+            modelBuilder.Entity<Expense>().Property(p => p.ExpenseDate).HasColumnName("EXPENSE_DATE");
+            modelBuilder.Entity<Expense>().Property(p => p.ExpenseAmount).HasColumnName("EXPENSE_AMOUNT");
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public class ModelConfiguration : DbConfiguration
