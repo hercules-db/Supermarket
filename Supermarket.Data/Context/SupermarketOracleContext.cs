@@ -55,8 +55,6 @@
             modelBuilder.Entity<Expense>().Property(p => p.VendorId).HasColumnName("VENDOR_ID");
             modelBuilder.Entity<Expense>().Property(p => p.ExpenseDate).HasColumnName("EXPENSE_DATE");
             modelBuilder.Entity<Expense>().Property(p => p.ExpenseAmount).HasColumnName("EXPENSE_AMOUNT");
-
-            base.OnModelCreating(modelBuilder);
         }
 
         public class ModelConfiguration : DbConfiguration
