@@ -53,8 +53,8 @@
         {
             try
             {
-                SyncDatabases.MsSqlMySql(new SupermarketMySqlContext());
-                MessageBox.Show(SyncSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                var resp = SyncDatabases.MsSqlMySql(new SupermarketSqlContext(), new SupermarketMySqlContext());
+                MessageBox.Show(resp, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch
             {
