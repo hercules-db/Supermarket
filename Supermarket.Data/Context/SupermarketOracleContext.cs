@@ -10,7 +10,7 @@
     public class SupermarketOracleContext : SupermarketContext
     {
         public const string ConnectionString =
-            "Data Source=62.176.105.57:1521/XE;Persist Security Info=True;User ID=HERCULES;Password=pass123;";
+            "Data Source=localhost:1521/XE;Persist Security Info=True;User ID=HERCULES;Password=pass123;";
 
         public SupermarketOracleContext()
             : base(new OracleConnection(ConnectionString))

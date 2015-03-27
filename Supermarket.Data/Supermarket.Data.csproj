@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.5.5\lib\itextsharp.dll</HintPath>
@@ -63,6 +68,7 @@
       <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.1.021\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -74,10 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ISupermarketContext.cs" />
-    <Compile Include="Context\SupermarketMySQLContext.cs" />
+    <Compile Include="Context\SupermarketMySqlContext.cs" />
     <Compile Include="Exports\Excel.cs" />
     <Compile Include="Exports\Json.cs" />
-    <Compile Include="Exports\MySql.cs" />
     <Compile Include="Exports\Pdf.cs" />
     <Compile Include="Exports\Xml.cs" />
     <Compile Include="Imports\Excel.cs" />
@@ -102,7 +107,8 @@
     <Compile Include="Context\SupermarketContext.cs" />
     <Compile Include="Context\SupermarketOracleContext.cs" />
     <Compile Include="Context\SupermarketSqlContext.cs" />
-    <Compile Include="Sync\SyncDatabases.cs" />
+    <Compile Include="Sync\MySql.cs" />
+    <Compile Include="Sync\Sql.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

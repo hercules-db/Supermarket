@@ -3,7 +3,6 @@
     using System.Windows;
 
     using Data.Context;
-    using Data.Migrations;
     using Data.Sync;
 
     /// <summary>
@@ -36,11 +35,11 @@
             export.Show();
         }
 
-        private void Sync_Click(object sender, RoutedEventArgs e)
+        private void SyncSql_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Configuration.Sync(new SupermarketSqlContext());
+                Sql.Sync(new SupermarketSqlContext());
                 MessageBox.Show(SyncSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch
@@ -49,12 +48,12 @@
             }
         }
 
-        private void ToMySql_Click(object sender, RoutedEventArgs e)
+        private void SyncMySql_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var resp = SyncDatabases.MsSqlMySql(new SupermarketSqlContext(), new SupermarketMySqlContext());
-                MessageBox.Show(resp, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                var mySqlSync = MySql.Sync(new SupermarketSqlContext(), new SupermarketMySqlContext());
+                MessageBox.Show(mySqlSync, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch
             {

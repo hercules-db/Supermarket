@@ -6,6 +6,7 @@
 
     using Data.Context;
     using Data.Exports;
+    using Data.Sync;
 
     /// <summary>
     /// Interaction logic for Export.xaml
@@ -43,9 +44,6 @@
                     case "JSON":
                         Json.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
                         break;
-                    case "MySQL": 
-                        MySql.Export(context, StartDate.SelectedDate, EndDate.SelectedDate);
-                        break; 
                 }
 
                 MessageBox.Show(ExportSuccess, MessageStatus.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Asterisk);
